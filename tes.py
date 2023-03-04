@@ -135,14 +135,14 @@ for chat in chat_scraped:
                 
                 card_send_formatted = f'''  
          𝑻𝒐𝒕𝒐𝒅𝒓𝒊𝒍𝒆 𝑺𝒄𝒓𝒂𝒑𝒑𝒆𝒓
-━━━━━•(=^●ω●^=)•━━━━━
+┏━━━━━━•(=^●ω●^=)•━━━━━━┓
  ↯ 𝐂𝐚𝐫𝐝: <code>{x}</code>
  ↯ 𝐄𝐱𝐭𝐫𝐚: <code>{extra}|{mes}|{ano}|rnd</code>
  ↯ 𝐁𝐢𝐧: <b><code>{bin}</code></b>
  ↯ 𝐈𝐧𝐟𝐨: <code>{vendor} - {tipo} - {level}</code>
  ↯ 𝐁𝐚𝐧𝐤: <code>{bank_name}</code> 
  ↯ 𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} {flag}</code> - <code>{currency}</code>
-━━━━━•(=^●ω●^=)•━━━━━
+┗━━━━━━•(=^●ω●^=)•━━━━━━┛
 '''
 
                 print(f'Orange Cat => {x}|@panaburguer')
