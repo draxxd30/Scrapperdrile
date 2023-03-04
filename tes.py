@@ -9,6 +9,8 @@ import requests
 import time
 import re
 import os
+import random
+from telethon.tl.types import InputMediaPoll, Poll, PollAnswer
 
 init()
 
@@ -102,8 +104,6 @@ for chat in chat_scraped:
                 elif tipocard == "6":
                     x = re.findall(filtron, message.text)[0]
 
-                 
-
                 lunh = verify(x.split("|")[0])
 
                 extra = x[0:12]+"xxxx"
@@ -117,34 +117,39 @@ for chat in chat_scraped:
                 tipo = bin_data["type"]
                 level = bin_data["level"]
                 bank_name = bin_data["bank"]["name"]
-                currency = bin_data["country"]["currency"]                                                     
-
-                fotoweb="https://imgur.com/a/YXOS7gx"
-
+                currency = bin_data["country"]["currency"]
+        
                 explode = x.split('|')
                 cc = explode[0] 
-                mes = explode[1] 
+                mes = explode[1]
+                if len(mes)==1:mes="20"+ mes
                 ano = explode[2] 
                 cvv = explode[3]
-
-
+                
+                path=(r"C:\carpetas\S3xyDrops\bfotosrandom")
+                fotorandom = random.choice([
+    os.path.join(path, x)  # <- new
+    for x in os.listdir(path)  # <- better to avoid repeating dir
+    if os.path.isfile(os.path.join(path, x))
+])
+                
                 card_send_formatted = f'''  
          𝑻𝒐𝒕𝒐𝒅𝒓𝒊𝒍𝒆 𝑺𝒄𝒓𝒂𝒑𝒑𝒆𝒓
-┏━━━━━━━•(=^●ω●^=)•━━━━━━━┓
+━━━━━•(=^●ω●^=)•━━━━━
  ↯ 𝐂𝐚𝐫𝐝: <code>{x}</code>
  ↯ 𝐄𝐱𝐭𝐫𝐚: <code>{extra}|{mes}|{ano}|rnd</code>
  ↯ 𝐁𝐢𝐧: <b><code>{bin}</code></b>
  ↯ 𝐈𝐧𝐟𝐨: <code>{vendor} - {tipo} - {level}</code>
  ↯ 𝐁𝐚𝐧𝐤: <code>{bank_name}</code> 
  ↯ 𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} {flag}</code> - <code>{currency}</code>
-┗━━━━━━━•(=^●ω●^=)•━━━━━━━┛
+━━━━━•(=^●ω●^=)•━━━━━
 '''
 
                 print(f'Orange Cat => {x}|@panaburguer')
                 if lunh is True:
                             if check_string(file_db, x) is False:
                                 time.sleep(3)
-                                client.send_message(posting_channel, card_send_formatted, file = "photo1.jpeg")
+                                client.send_message(posting_channel, card_send_formatted, file=fotorandom)
                                 f = open(file_db, 'a')
                                 f.write(f"{x}\n")
                                 f.close() 
